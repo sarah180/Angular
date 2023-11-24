@@ -1,0 +1,30 @@
+<!-- residences.component.html -->
+<div *ngFor="let residence of listResidences">
+    <h3>{{ residence.name }}</h3>
+    <p>{{ residence.address }}</p>
+    <img [src]="residence.image" alt="{{ residence.name }}">
+  
+    <button (click)="showApartments(residence)">Show Apartments</button>
+  
+    <div *ngIf="selectedResidence === residence">
+      <!-- Display the image of the selected residence -->
+      <img [src]="selectedResidence.image" alt="{{ selectedResidence.name }}">
+  
+      <h4>Apartments in {{ selectedResidence.name }}</h4>
+  
+      <div *ngIf="listApartments.length > 0; else noApartments">
+        <!-- Display the list of apartments -->
+        <ul>
+          <li *ngFor="let apartment of listApartments">
+            {{ apartment.description }}
+          </li>
+        </ul>
+      </div>
+      <ng-template #noApartments>
+        <p>No Apartment found</p>
+      </ng-template>
+    </div>
+  
+    <hr>
+  </div>
+  
